@@ -199,6 +199,7 @@ public class FtdcDecoder extends ByteToMessageDecoder{
 	     * @return  frame           the {@link ByteBuf} which represent the frame or {@code null} if no frame could
 	     *                          be created.
 	     */
+		@SuppressWarnings("deprecation")
 		protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
 	        if (discardingTooLongFrame) {
 	            long bytesToDiscard = this.bytesToDiscard;
@@ -206,14 +207,11 @@ public class FtdcDecoder extends ByteToMessageDecoder{
 	            in.skipBytes(localBytesToDiscard);
 	            bytesToDiscard -= localBytesToDiscard;
 	            this.bytesToDiscard = bytesToDiscard;
-
 	            failIfNecessary(false);
 	        }
-
 	        if (in.readableBytes() < lengthFieldEndOffset) {
 	            return null;
 	        }
-
 	        int actualLengthFieldOffset = in.readerIndex() + lengthFieldOffset;
 	        in = in.order(byteOrder);
 	        short type = in.getUnsignedByte(in.readerIndex());
