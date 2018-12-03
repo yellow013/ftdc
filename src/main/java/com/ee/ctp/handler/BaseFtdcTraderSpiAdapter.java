@@ -86,9 +86,9 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 		if (CTPErrorCode.isChannelAuthPassed(ctpErrorCode)) {
 			final Channel oldFtdcChannel = ApplicationRuntime.putFtdcChannel(rspUserLogin.getBrokerID(),
 					rspUserLogin.getUserID(), this.userFtdcChannel());
-			if (oldFtdcChannel != null) {
+			if (oldFtdcChannel != null)
 				delayCloseFtdcChannel(oldFtdcChannel);
-			}
+
 			// 绑定session
 			UserSession session = new UserSession(rspUserLogin);
 			this.userFtdcChannel().attr(FtdcTraderSpi.USER_SESSION).set(session);

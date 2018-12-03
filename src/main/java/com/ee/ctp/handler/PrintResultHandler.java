@@ -33,17 +33,19 @@ import com.ee.ctp.dto.RspUserPasswordUpdate;
 import com.ee.ctp.dto.RtnBankOrFuture;
 import com.ee.ctp.dto.RtnOrder;
 import com.ee.ctp.dto.RtnTrade;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午8:43:12
+ * @author ee 2017年10月17日 下午8:43:12
  *
  */
 public class PrintResultHandler extends BaseFtdcTraderSpiAdapter {
+
 	private static final Logger logger = LoggerFactory.getLogger(PrintResultHandler.class);
 	private static final String LOGGR_TEMPLATE_DEBUG = "recieve msg: reqid {}, {}";
+
 	private ConcurrentHashMap<Integer, byte[]> multipartMap = new ConcurrentHashMap<>();
-	
+
 	@Override
 	protected void doRspUserLogin(RspUserLogin rspUserLogin, RequestIdentity ri, boolean authPassed) {
 		logger.debug(LOGGR_TEMPLATE_DEBUG, ri.getReqId(), rspUserLogin);
@@ -54,34 +56,30 @@ public class PrintResultHandler extends BaseFtdcTraderSpiAdapter {
 		logger.debug(LOGGR_TEMPLATE_DEBUG, ri.getReqId(), null);
 	}
 
-
 	@Override
 	protected void doRspUserLogout(RequestIdentity requestIdentity, RspUserLogout lout) {
 		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), lout);
 	}
 
-
 	@Override
 	protected void doRspSettlementInfo(RequestIdentity requestIdentity, RspSettlementInfo info, boolean isLast) {
-		if(!isLast) {
-			if(multipartMap.containsKey(requestIdentity.getReqId())) {
+		if (!isLast) {
+			if (multipartMap.containsKey(requestIdentity.getReqId())) {
 				byte[] part = multipartMap.get(requestIdentity.getReqId());
-				
 				multipartMap.put(requestIdentity.getReqId(), ArrayUtils.addAll(part, info.getContent()));
-			}else {
+			} else {
 				multipartMap.put(requestIdentity.getReqId(), info.getContent());
 			}
-		}else {
+		} else {
 			byte[] part = multipartMap.get(requestIdentity.getReqId());
 			try {
 				logger.debug(requestIdentity.getReqId() + ":"
 						+ new String(part, ApplicationRuntime.conf().defaultEncoding()));
 			} catch (UnsupportedEncodingException e) {
-				//nop
+				// nop
 			}
 		}
 	}
-
 
 	@Override
 	protected void doRspSettlementInfoConfirm(RequestIdentity requestIdentity, RspSettlementInfoConfirm info,
@@ -113,72 +111,72 @@ public class PrintResultHandler extends BaseFtdcTraderSpiAdapter {
 
 	@Override
 	protected void doRtnTrade(RequestIdentity requestIdentity, RtnTrade rtnTrade, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rtnTrade);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rtnTrade);
 	}
 
 	@Override
 	protected void doRspInvestorPosition(RequestIdentity requestIdentity, RspInvestorPosition investorPisition,
 			boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), investorPisition);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), investorPisition);
 	}
 
 	@Override
 	protected void doRspError(RequestIdentity requestIdentity, RspError error) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), error);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), error);
 	}
 
 	@Override
 	protected void doRspQryMarginRate(RequestIdentity requestIdentity, RspQryMarginRate qryMarginRate, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), qryMarginRate);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), qryMarginRate);
 	}
 
 	@Override
 	protected void doRspQryCommissionRate(RequestIdentity requestIdentity, RspQryCommissionRate qryCommissionRate,
 			boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), qryCommissionRate);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), qryCommissionRate);
 	}
 
 	@Override
 	protected void doErrRtnOrderAction(RequestIdentity requestIdentity, ErrRtnOrderAction errRtnOrderAction,
 			boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), errRtnOrderAction);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), errRtnOrderAction);
 	}
 
 	@Override
 	protected void doRspQryAccountRegister(RequestIdentity requestIdentity, RspAccountRegister accountRegister,
 			boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), accountRegister);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), accountRegister);
 	}
 
 	@Override
 	protected void doRspQryContractBank(RequestIdentity requestIdentity, RspContractBank contractBank, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), contractBank);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), contractBank);
 	}
 
 	@Override
 	protected void doRspOrderAction(RequestIdentity requestIdentity, RspOrderAction rspOrderAction, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rspOrderAction);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rspOrderAction);
 	}
 
 	@Override
 	protected void doRspQryTransferSerial(RequestIdentity requestIdentity, RspQryTransferSerial info, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);
 	}
 
 	@Override
 	protected void doRspQryInstrument(RequestIdentity requestIdentity, RspQryInstrument info, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);
 	}
 
 	@Override
 	protected void doRtnBankOrFuture(RequestIdentity requestIdentity, RtnBankOrFuture rtnBankOrFuture, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rtnBankOrFuture);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), rtnBankOrFuture);
 	}
 
 	@Override
 	protected void doRspUserPasswordUpdate(RequestIdentity requestIdentity, RspUserPasswordUpdate info,
 			boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);		
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);
 	}
 
 	@Override
@@ -188,12 +186,12 @@ public class PrintResultHandler extends BaseFtdcTraderSpiAdapter {
 
 	@Override
 	protected void doRspQryTrade(RequestIdentity requestIdentity, RtnTrade trade, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), trade);	
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), trade);
 	}
 
 	@Override
 	protected void doRspFundPwdUpdtae(RequestIdentity requestIdentity, RspFundPasswordUpdate info, boolean isLast) {
-		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);	
+		logger.debug(LOGGR_TEMPLATE_DEBUG, requestIdentity.getReqId(), info);
 	}
 
 	@Override

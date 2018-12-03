@@ -63,9 +63,8 @@ public class ApplicationRuntime {
 	public static RequestIdentity bindRequestIdentiity(RequestIdentity ri) {
 		String key = ri.getBrokerId() + CHANNEL_MAP_SPLIT + ri.getUserId() + CHANNEL_MAP_SPLIT + ri.getReqId();
 		String clientKey = ri.getBrokerId() + CHANNEL_MAP_SPLIT + ri.getUserId();
-		if (ri.getClientChannel() != null) {
+		if (ri.getClientChannel() != null)
 			CLIENT_CHANNEL_MAP.put(clientKey, ri.getClientChannel());
-		}
 		return REQUESTIDENTITY_MAP.put(key, ri);
 	}
 

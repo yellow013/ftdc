@@ -33,7 +33,9 @@ import io.netty.util.concurrent.GenericFutureListener;
 
 /**
  * 
- * @author ee 2017年10月17日 下午8:35:42
+ * @author ee
+ * 
+ *         2017年10月17日 下午8:35:42
  *
  */
 public class FtdcTraderApiAdapter implements FtdcTraderApi {
@@ -77,9 +79,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.UserLogoutReq.id(), Sequence.UserLogout);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	private void getRequestSpi(RequestIdentity requestIdentity) {
@@ -120,9 +121,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.SettlementInfoReq.id(), Sequence.SettlementInfo);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -141,9 +141,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.SettlementInfoConfirmReq.id(), Sequence.SettlementInfoConfirm);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -163,9 +162,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 					requestIdentity.getReqId(), TID.QrySettlementInfoConfirmReq.id(),
 					Sequence.QrySettlementInfoConfirm);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -184,9 +182,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.TradingAccountReq.id(), Sequence.TradingAccount);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -242,9 +239,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.InvestorPositionReq.id(), Sequence.InvestorPosition);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -263,9 +259,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryMarginRateReq.id(), Sequence.QryMarginRate);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -284,9 +279,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryCommissionRateReq.id(), Sequence.QryCommissionRate);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -305,9 +299,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.AccountRegisterReq.id(), Sequence.AccountRegister);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -326,9 +319,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.ContractbankReq.id(), Sequence.ContractBank);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -347,9 +339,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.OrderActionReq.id(), Sequence.OrderAction);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -368,9 +359,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryTransferSerialReq.id(), Sequence.QryTransferSerial);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -389,9 +379,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryInstrumentReq.id(), Sequence.QryInstrument);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -410,9 +399,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.FromBankToFutureReq.id(), Sequence.FromBankToFuture);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -431,9 +419,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.FromFutureToBankReq.id(), Sequence.FromFutureToBank);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -452,9 +439,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.UserPasswordUpdateReq.id(), Sequence.UserPasswordUpdate);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -473,9 +459,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryOrderReq.id(), Sequence.QryOrder);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -494,9 +479,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.QryTradeReq.id(), Sequence.QryTrade);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override
@@ -526,9 +510,8 @@ public class FtdcTraderApiAdapter implements FtdcTraderApi {
 			FtdcProtocol ftdc = new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
 					requestIdentity.getReqId(), TID.FundPasswordUpdateReq.id(), Sequence.FundPassworeUpdate);
 			ftdcChannel.writeAndFlush(ftdc);
-		} else {
+		} else
 			fireRspError(ftdcTraderSpi, requestIdentity);
-		}
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package com.ee.ctp.enums;
+
 /**
- * ftd扩展报文头类型
+ * FTD扩展报文头类型
+ * 
  * @author ee
- * 2017年10月17日 下午5:57:54
+ * 
+ *         2017年10月17日 下午5:57:54
  *
  */
 public enum FtdTagType {

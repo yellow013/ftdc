@@ -8,7 +8,9 @@ import com.ee.ctp.pool.FtdClientPool.ConnectAddrProperty;
 
 /**
  * 
- * @author ee 2017年10月17日 下午8:44:26
+ * @author ee
+ * 
+ *         2017年10月17日 下午8:44:26
  *
  */
 public class DefaultSocketAddressChooserFactory implements SocketAddressChooserFactory {
@@ -20,11 +22,10 @@ public class DefaultSocketAddressChooserFactory implements SocketAddressChooserF
 
 	@Override
 	public SocketAddressChooser newChooser(int size) {
-		if (isPowerOfTwo(size)) {
+		if (isPowerOfTwo(size))
 			return new PowerOfTwoSocketAddressChooser();
-		} else {
+		else
 			return new GenericSocketAddressChooser();
-		}
 	}
 
 	static boolean isPowerOfTwo(int val) {
@@ -32,6 +33,7 @@ public class DefaultSocketAddressChooserFactory implements SocketAddressChooserF
 	}
 
 	static final class PowerOfTwoSocketAddressChooser implements SocketAddressChooser {
+
 		private final AtomicInteger idx = new AtomicInteger();
 
 		@Override
@@ -42,12 +44,14 @@ public class DefaultSocketAddressChooserFactory implements SocketAddressChooserF
 	}
 
 	static final class GenericSocketAddressChooser implements SocketAddressChooser {
+
 		private final AtomicInteger idx = new AtomicInteger();
 
 		@Override
 		public SocketAddress next(List<ConnectAddrProperty> sas) {
 			return sas.get(Math.abs(idx.getAndIncrement() % sas.size())).getSocketAddress();
 		}
+
 	}
 
 }

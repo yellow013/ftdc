@@ -8,12 +8,14 @@ import com.ee.ctp.pool.FtdClientPool.ConnectAddrProperty;
 
 /**
  * 
- * @author ee 2017年10月17日 下午8:29:05
+ * @author ee
+ * 
+ *         2017年10月17日 下午8:29:05
  *
  */
 public interface FtdcTraderApi {
 	/**
-	 * 注册ftd地址
+	 * 注册FTD地址
 	 * 
 	 * @param sas
 	 */
@@ -77,7 +79,7 @@ public interface FtdcTraderApi {
 	void reqTradingAccount(RequestIdentity requestIdentity, FtdcReq tradingAccount);
 
 	/**
-	 * O 请求报单
+	 * 请求报单
 	 * 
 	 * @param requestIdentity
 	 * @param inputOrder

@@ -33,11 +33,15 @@ import io.netty.util.concurrent.Future;
 
 /**
  * 
- * @author ee 2017年10月17日 下午8:44:35
+ * @author ee
+ * 
+ *         2017年10月17日 下午8:44:35
  *
  */
 public class FtdClientPool {
+
 	private static final Logger logger = LoggerFactory.getLogger(FtdClientPool.class);
+
 	private NbtsChannelPoolMap pollMap;
 	private static volatile FtdClientPool clientPool;
 	private static final ConcurrentHashMap<Integer, SocketAddressChooser> CHOOSER_MAP = new ConcurrentHashMap<>();
@@ -66,13 +70,10 @@ public class FtdClientPool {
 		Verify.verify(pollMap != null && !sas.isEmpty(), "ftdc connection pool init failure or sas is null");
 		SocketAddressChooser newChooser = DefaultSocketAddressChooserFactory.INSTANCE.newChooser(sas.size());
 		SocketAddressChooser oldChooser = CHOOSER_MAP.putIfAbsent(sas.hashCode(), newChooser);
-		if (oldChooser == null) {
+		if (oldChooser == null)
 			oldChooser = newChooser;
-		}
 		InetSocketAddress socketAddress = (InetSocketAddress) oldChooser.next(sas);
-		if (logger.isDebugEnabled()) {
-			logger.debug("use socket address {}", socketAddress);
-		}
+		logger.debug("use socket address {}", socketAddress);
 		FixedChannelPool fixedChannelPool = pollMap.get(socketAddress);
 		return fixedChannelPool.acquire();
 	}
@@ -86,17 +87,14 @@ public class FtdClientPool {
 	public Future<Void> release(Channel channel) {
 		Verify.verifyNotNull(channel, "channel不允许为NULL");
 		InetSocketAddress remoteAddress = (InetSocketAddress) channel.remoteAddress();
-		if (logger.isDebugEnabled()) {
-			logger.debug("{} channel released", remoteAddress);
-		}
+		logger.debug("{} channel released", remoteAddress);
 		FixedChannelPool fixedChannelPool = pollMap.get(remoteAddress);
 		Future<Void> releaseFuture = fixedChannelPool.release(channel);
 		if (!releaseFuture.isSuccess()) {
 			Throwable cause = releaseFuture.cause();
-			if (cause != null) {
+			if (cause != null)
 				logger.error("rlease local channel {}, remote channel {}, happens error {}", channel.localAddress(),
 						channel.remoteAddress(), ExceptionUtils.getStackTrace(releaseFuture.cause()));
-			}
 		}
 		return releaseFuture;
 	}
@@ -159,12 +157,12 @@ public class FtdClientPool {
 		}
 
 		private static Bootstrap initBootStrap() {
-			Bootstrap cb = new Bootstrap();
-			Verify.verifyNotNull(cb);
-			cb.group(ApplicationRuntime.FTDC_LOOP_GROUP);
-			cb.channel(NioSocketChannel.class);
-			cb.option(ChannelOption.SO_KEEPALIVE, false);
-			return cb;
+			Bootstrap bootstrap = new Bootstrap();
+			Verify.verifyNotNull(bootstrap);
+			bootstrap.group(ApplicationRuntime.FTDC_LOOP_GROUP);
+			bootstrap.channel(NioSocketChannel.class);
+			bootstrap.option(ChannelOption.SO_KEEPALIVE, false);
+			return bootstrap;
 		}
 
 	}

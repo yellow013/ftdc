@@ -29,12 +29,12 @@ public class CtpClient {
 	 */
 	public static void ctp(String host, int port, ChannelFutureListener listener) throws Exception {
 		NioEventLoopGroup group = new NioEventLoopGroup();
-		Bootstrap bs = new Bootstrap();
-		bs.group(group);
-		bs.channel(NioSocketChannel.class);
-		bs.handler(new FtdcInitializer());
+		Bootstrap bootstrap = new Bootstrap();
+		bootstrap.group(group);
+		bootstrap.channel(NioSocketChannel.class);
+		bootstrap.handler(new FtdcInitializer());
 
-		ChannelFuture channelFuture = bs.connect(host, port);
+		ChannelFuture channelFuture = bootstrap.connect(host, port);
 		channelFuture.addListener(listener);
 		channelFuture.sync();
 	}

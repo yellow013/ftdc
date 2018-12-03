@@ -68,8 +68,11 @@ import junit.framework.TestCase;
 public class ApiTest extends TestCase {
 	/**
 	 * 切换环境
+	 * 
+	 * 30-5A-3A-E0-AF-DA
 	 */
 	private static final boolean TEST = true;
+	
 	private static String userid;
 	private static String passwd;
 	private static String brokerid;
