@@ -1,13 +1,14 @@
 package com.ee.ctp;
 
 import io.netty.channel.Channel;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午8:12:42
+ * @author ee 2017年10月17日 下午8:12:42
  *
  */
 public class RequestIdentity {
+
 	private int reqId;
 	private String userId;
 	private String brokerId;
@@ -49,7 +50,7 @@ public class RequestIdentity {
 	public void setClientChannel(Channel clientChannel) {
 		this.clientChannel = clientChannel;
 	}
-	
+
 	public Object getReqMsg() {
 		return reqMsg;
 	}
@@ -69,8 +70,7 @@ public class RequestIdentity {
 	@Override
 	public String toString() {
 		return "RequestIdentity [reqId=" + reqId + ", userId=" + userId + ", brokerId=" + brokerId + ", clientChannel="
-				+ clientChannel + ", authCode=" + authCode
-				+ "]";
+				+ clientChannel + ", authCode=" + authCode + "]";
 	}
-	
+
 }

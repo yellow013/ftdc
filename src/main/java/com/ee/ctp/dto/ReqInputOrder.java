@@ -14,13 +14,13 @@ import com.ee.ctp.enums.business.FtdcTimeCondition;
 import com.ee.ctp.enums.business.FtdcVolumeCondition;
 
 import io.netty.buffer.ByteBuf;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午8:15:58
+ * @author ee 2017年10月17日 下午8:15:58
  *
  */
-public class ReqInputOrder implements FtdcReq{
+public class ReqInputOrder implements FtdcReq {
 	private byte[] brokerID = new byte[11];
 	private byte[] investorID = new byte[13];
 	private byte[] instrumentID = new byte[31];

@@ -5,13 +5,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.ee.ctp.enums.business.FtdcCurrencyID;
 
 import io.netty.buffer.ByteBuf;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午8:17:28
+ * @author ee 2017年10月17日 下午8:17:28
  *
  */
-public class ReqQryTransferSerial implements FtdcReq{
+public class ReqQryTransferSerial implements FtdcReq {
 	private byte[] brokerID = new byte[11];
 	private byte[] accountID = new byte[13];
 	private byte[] bankID = new byte[4];
@@ -36,8 +36,9 @@ public class ReqQryTransferSerial implements FtdcReq{
 	}
 
 	public void setCurrencyID(FtdcCurrencyID currencyID) {
-		if(currencyID != null) {
-			this.currencyID = currencyID.getId(); }
+		if (currencyID != null) {
+			this.currencyID = currencyID.getId();
+		}
 	}
 
 	@Override

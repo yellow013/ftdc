@@ -7,13 +7,13 @@ import java.io.UnsupportedEncodingException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ee.ctp.ApplicationRuntime;
+
 /**
  * 
- * @author zlj
- * 2017年10月17日 下午8:14:26
+ * @author zlj 2017年10月17日 下午8:14:26
  *
  */
-public class ErrRtnOrderAction implements FtdcRsp{
+public class ErrRtnOrderAction implements FtdcRsp {
 	// 11
 	private String brokerID;
 	// 13
@@ -308,7 +308,7 @@ public class ErrRtnOrderAction implements FtdcRsp{
 	public void setMacAddress(String macAddress) {
 		this.macAddress = macAddress;
 	}
-	
+
 	public int getErrorCode() {
 		return errorCode;
 	}
@@ -328,7 +328,7 @@ public class ErrRtnOrderAction implements FtdcRsp{
 	@Override
 	public ErrRtnOrderAction parseFrom(ByteBuf body, RspError error) {
 		ErrRtnOrderAction info = new ErrRtnOrderAction();
-		
+
 		byte[] brokerID = new byte[11];
 		body.readBytes(brokerID);
 		info.setBrokerID(StringUtils.trimToEmpty(new String(brokerID)));
@@ -385,13 +385,11 @@ public class ErrRtnOrderAction implements FtdcRsp{
 
 		byte[] actionLocalID = new byte[13];
 		body.readBytes(actionLocalID);
-		info.setActionLocalID(StringUtils
-				.trimToEmpty(new String(actionLocalID)));
+		info.setActionLocalID(StringUtils.trimToEmpty(new String(actionLocalID)));
 
 		byte[] participantID = new byte[11];
 		body.readBytes(participantID);
-		info.setParticipantID(StringUtils
-				.trimToEmpty(new String(participantID)));
+		info.setParticipantID(StringUtils.trimToEmpty(new String(participantID)));
 
 		byte[] clientID = new byte[11];
 		body.readBytes(clientID);
@@ -403,8 +401,7 @@ public class ErrRtnOrderAction implements FtdcRsp{
 
 		byte[] orderActionStatus = new byte[1];
 		body.readBytes(orderActionStatus);
-		info.setOrderActionStatus(StringUtils.trimToEmpty(new String(
-				orderActionStatus)));
+		info.setOrderActionStatus(StringUtils.trimToEmpty(new String(orderActionStatus)));
 
 		byte[] userID = new byte[16];
 		body.readBytes(userID);
@@ -436,37 +433,32 @@ public class ErrRtnOrderAction implements FtdcRsp{
 
 		// TID 00000055
 		body.readInt();
-		
+
 		info.setErrorCode(body.readInt());
 		byte[] errorMsg = new byte[81];
 		body.readBytes(errorMsg);
 		try {
-			info.setErrorMsg(StringUtils.trimToEmpty(new String(errorMsg, ApplicationRuntime.conf().defaultEncoding())));
+			info.setErrorMsg(
+					StringUtils.trimToEmpty(new String(errorMsg, ApplicationRuntime.conf().defaultEncoding())));
 		} catch (UnsupportedEncodingException e) {
-			//ignore
+			// ignore
 		}
-		
+
 		return info;
 	}
 
 	@Override
 	public String toString() {
-		return "ErrRtnOrderAction [brokerID=" + brokerID + ", investorID="
-				+ investorID + ", orderActionRef=" + orderActionRef
-				+ ", orderRef=" + orderRef + ", requestID=" + requestID
-				+ ", frontID=" + frontID + ", sessionID=" + sessionID
-				+ ", exchangeID=" + exchangeID + ", orderSysID=" + orderSysID
-				+ ", actionFlag=" + actionFlag + ", limitPrice=" + limitPrice
-				+ ", volumeChange=" + volumeChange + ", actionDate="
-				+ actionDate + ", actionTime=" + actionTime + ", traderID="
-				+ traderID + ", installID=" + installID + ", orderLocalID="
-				+ orderLocalID + ", actionLocalID=" + actionLocalID
-				+ ", participantID=" + participantID + ", clientID=" + clientID
-				+ ", businessUnit=" + businessUnit + ", orderActionStatus="
-				+ orderActionStatus + ", userID=" + userID + ", statusMsg="
-				+ statusMsg + ", instrumentID=" + instrumentID + ", branchID="
-				+ branchID + ", investUnitID=" + investUnitID + ", iPAddress="
-				+ iPAddress + ", macAddress=" + macAddress + ", errorCode="
-				+ errorCode + ", errorMsg=" + errorMsg + "]";
+		return "ErrRtnOrderAction [brokerID=" + brokerID + ", investorID=" + investorID + ", orderActionRef="
+				+ orderActionRef + ", orderRef=" + orderRef + ", requestID=" + requestID + ", frontID=" + frontID
+				+ ", sessionID=" + sessionID + ", exchangeID=" + exchangeID + ", orderSysID=" + orderSysID
+				+ ", actionFlag=" + actionFlag + ", limitPrice=" + limitPrice + ", volumeChange=" + volumeChange
+				+ ", actionDate=" + actionDate + ", actionTime=" + actionTime + ", traderID=" + traderID
+				+ ", installID=" + installID + ", orderLocalID=" + orderLocalID + ", actionLocalID=" + actionLocalID
+				+ ", participantID=" + participantID + ", clientID=" + clientID + ", businessUnit=" + businessUnit
+				+ ", orderActionStatus=" + orderActionStatus + ", userID=" + userID + ", statusMsg=" + statusMsg
+				+ ", instrumentID=" + instrumentID + ", branchID=" + branchID + ", investUnitID=" + investUnitID
+				+ ", iPAddress=" + iPAddress + ", macAddress=" + macAddress + ", errorCode=" + errorCode + ", errorMsg="
+				+ errorMsg + "]";
 	}
 }

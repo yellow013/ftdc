@@ -6,13 +6,15 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.util.ReferenceCountUtil;
+
 /**
  * 
  * @author ee
- * 2017年10月17日 下午8:26:22
+ * 
+ *         2017年10月17日 下午8:26:22
  *
  */
-public class FtdcEncoder extends MessageToMessageEncoder<FtdcProtocol>{
+public class FtdcEncoder extends MessageToMessageEncoder<FtdcProtocol> {
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, FtdcProtocol msg, List<Object> out) throws Exception {

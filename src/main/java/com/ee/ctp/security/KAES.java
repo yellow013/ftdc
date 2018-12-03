@@ -10,20 +10,23 @@ import javax.crypto.spec.SecretKeySpec;
  *
  */
 public class KAES {
+
 	public static final KAES DEFAULT_INSTANCE = new KAES();
+
 	private static final String ENCRYT_MODE = "AES/ECB/NoPadding";
 	private static final String ENCRYPT = "AES";
 	private static final int DIL = 0x85;
 	private static final int SIGN_BLOCK = 0xff;
 	private static final int BOUND_LOW = 0x9;
 	private static final int BOUND_HIGH = 0x23;
-	
+
 	private static final int BOUND_MID_ADD = 0x57;
 	private static final int BOUND_HIGH_ADD = 0x1d;
 	private static final int BOUND_LOW_ADD = 0x30;
 
 	/**
 	 * 认证
+	 * 
 	 * @param src
 	 * @param key
 	 * @return
@@ -43,9 +46,9 @@ public class KAES {
 			throw new KAESException(e);
 		}
 	}
-	
+
 	private byte[] auth(byte[] aesData) {
-		byte [] authData = new byte[aesData.length]; 
+		byte[] authData = new byte[aesData.length];
 		for (int i = 0; i < aesData.length; i++) {
 			int unsignData = aesData[i] & SIGN_BLOCK;
 			int edx = unsignData;
@@ -57,16 +60,16 @@ public class KAES {
 			edx <<= 6;
 			edx -= ecx;
 			unsignData -= edx;
-			if(unsignData > BOUND_LOW && unsignData <= BOUND_HIGH) {
+			if (unsignData > BOUND_LOW && unsignData <= BOUND_HIGH) {
 				unsignData += BOUND_MID_ADD;
-			}else if(unsignData > BOUND_HIGH){
+			} else if (unsignData > BOUND_HIGH) {
 				unsignData += BOUND_HIGH_ADD;
-			}else {
+			} else {
 				unsignData += BOUND_LOW_ADD;
 			}
-			authData[i] = (byte)unsignData;
+			authData[i] = (byte) unsignData;
 		}
 		return authData;
 	}
-	
+
 }

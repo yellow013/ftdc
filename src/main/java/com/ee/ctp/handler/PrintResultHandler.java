@@ -74,7 +74,8 @@ public class PrintResultHandler extends BaseFtdcTraderSpiAdapter {
 		}else {
 			byte[] part = multipartMap.get(requestIdentity.getReqId());
 			try {
-				logger.debug(requestIdentity.getReqId() + ":" + new String(part, ApplicationRuntime.conf().defaultEncoding()));
+				logger.debug(requestIdentity.getReqId() + ":"
+						+ new String(part, ApplicationRuntime.conf().defaultEncoding()));
 			} catch (UnsupportedEncodingException e) {
 				//nop
 			}

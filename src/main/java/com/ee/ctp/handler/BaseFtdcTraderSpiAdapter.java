@@ -89,7 +89,7 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 			if (oldFtdcChannel != null) {
 				delayCloseFtdcChannel(oldFtdcChannel);
 			}
-			//绑定session
+			// 绑定session
 			UserSession session = new UserSession(rspUserLogin);
 			this.userFtdcChannel().attr(FtdcTraderSpi.USER_SESSION).set(session);
 			doRspUserLogin(rspUserLogin, requestIdentity, true);
@@ -97,7 +97,7 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 			delayCloseFtdcChannel(this.userFtdcChannel());
 			doRspUserLogin(rspUserLogin, requestIdentity, false);
 		}
-		
+
 	}
 
 	private void delayCloseFtdcChannel(final Channel oldFtdcChannel) {
@@ -112,6 +112,7 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 
 	/**
 	 * 登录应答
+	 * 
 	 * @param rspUserLogin
 	 * @param ri
 	 * @param authPassed
@@ -125,29 +126,33 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 		ByteBuf buffer = this.userFtdcChannel().alloc().buffer();
 		ReqAuth reqAuth = ReqAuth.buildSecondFrom(rspAuth, requestIdentity.getAuthCode());
 		reqAuth.writeSecond(buffer.retain());
-		this.userFtdcChannel().writeAndFlush(new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(), reqId,
-				TID.Auth.id(), Sequence.Auth));
+		this.userFtdcChannel().writeAndFlush(new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(),
+				reqId, TID.Auth.id(), Sequence.Auth));
 	}
 
 	@Override
 	public void onRspUserAuthSecond(RspAuth rspAuth, int reqId, boolean isLast) {
 		int errorCode = rspAuth.getErrorCode();
-		if(errorCode == 0) {
-			RequestIdentity requestIdentity = getRequestIdentity(reqId, false, rspAuth.getBrokerID(), rspAuth.getUserID());
+		if (errorCode == 0) {
+			RequestIdentity requestIdentity = getRequestIdentity(reqId, false, rspAuth.getBrokerID(),
+					rspAuth.getUserID());
 			ReqUserLogin reqUserLogin = this.userFtdcChannel().attr(FtdcTraderSpi.USER_LOGIN).get();
 			ByteBuf buffer = this.userFtdcChannel().alloc().buffer();
 			reqUserLogin.write(buffer.retain());
-			this.userFtdcChannel().writeAndFlush(new FtdcProtocol(FtdType.FTDTypeCompressed, buffer, FtdcType.REQ.type(), reqId,
-					TID.UserLoginReq.id(), Sequence.UserLogin));
-			ApplicationRuntime.newTimeout(new RecieveMessageTimerTask(requestIdentity, this), ApplicationRuntime.conf().getMessageTimeout());
-		}else {
-			RequestIdentity requestIdentity = getRequestIdentity(reqId, isLast, rspAuth.getBrokerID(), rspAuth.getUserID());
+			this.userFtdcChannel().writeAndFlush(new FtdcProtocol(FtdType.FTDTypeCompressed, buffer,
+					FtdcType.REQ.type(), reqId, TID.UserLoginReq.id(), Sequence.UserLogin));
+			ApplicationRuntime.newTimeout(new RecieveMessageTimerTask(requestIdentity, this),
+					ApplicationRuntime.conf().getMessageTimeout());
+		} else {
+			RequestIdentity requestIdentity = getRequestIdentity(reqId, isLast, rspAuth.getBrokerID(),
+					rspAuth.getUserID());
 			doRspUserAuth(requestIdentity, rspAuth, true);
 		}
 	}
-	
+
 	/**
 	 * 客户端应答
+	 * 
 	 * @param requestIdentity
 	 * @param info
 	 * @param isLast
@@ -590,8 +595,7 @@ public abstract class BaseFtdcTraderSpiAdapter implements FtdcTraderSpi {
 	 * @param info
 	 * @param isLast
 	 */
-	protected abstract void doRspFutureOrBank(RequestIdentity requestIdentity, RspFutureOrBank info,
-			boolean isLast);
+	protected abstract void doRspFutureOrBank(RequestIdentity requestIdentity, RspFutureOrBank info, boolean isLast);
 
 	@Override
 	public void unRecieveUnusedSequence(int reqId, int tid, int sequence) {

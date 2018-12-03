@@ -6,13 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.ee.ctp.enums.business.FtdcActionFlagType;
 import com.ee.ctp.enums.business.FtdcExchange;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午8:15:58
+ * @author ee 2017年10月17日 下午8:15:58
  *
  */
-public class ReqOrderAction implements FtdcReq{
+public class ReqOrderAction implements FtdcReq {
 	private byte[] brokerID = new byte[11];
 	private byte[] investorID = new byte[13];
 	private int orderActionRef;
