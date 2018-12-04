@@ -1,8 +1,8 @@
 package io.ffreedom.ftd.enums.business;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午7:41:04
+ * @author ee 2017年10月17日 下午7:41:04
  *
  */
 public enum FtdcForceCLoseReson {
@@ -38,47 +38,38 @@ public enum FtdcForceCLoseReson {
 	 * 自然人临近交割
 	 */
 	THOST_FTDCFCC_PersonDeliv("7");
-	
+
 	private String type;
+
 	private FtdcForceCLoseReson(String type) {
 		this.type = type;
 	}
-	
+
 	public String type() {
 		return this.type;
 	}
-	
+
 	public static FtdcForceCLoseReson parseFrom(String reson) {
-		FtdcForceCLoseReson retReason = null;
-		switch(reson) {
+		switch (reson) {
 		case "0":
-			retReason = THOST_FTDCFCC_NotForceClose;
-			break;
+			return THOST_FTDCFCC_NotForceClose;
 		case "1":
-			retReason = THOST_FTDCFCC_LackDeposit;
-			break;
+			return THOST_FTDCFCC_LackDeposit;
 		case "2":
-			retReason = THOST_FTDCFCC_ClientOverPositionLimit;
-			break;
+			return THOST_FTDCFCC_ClientOverPositionLimit;
 		case "3":
-			retReason = THOST_FTDCFCC_MemberOverPositionLimit;
-			break;
+			return THOST_FTDCFCC_MemberOverPositionLimit;
 		case "4":
-			retReason = THOST_FTDCFCC_NotMultiple;
-			break;
+			return THOST_FTDCFCC_NotMultiple;
 		case "5":
-			retReason = THOST_FTDCFCC_Violation;
-			break;
+			return THOST_FTDCFCC_Violation;
 		case "6":
-			retReason = THOST_FTDCFCC_Other;
-			break;
+			return THOST_FTDCFCC_Other;
 		case "7":
-			retReason = THOST_FTDCFCC_PersonDeliv;
-			break;
+			return THOST_FTDCFCC_PersonDeliv;
 		default:
-			break;
+			return null;
 		}
-		return retReason;
 	}
-	
+
 }

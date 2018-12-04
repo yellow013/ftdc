@@ -2,6 +2,7 @@ package io.ffreedom.ftd.enums.business;
 
 /**
  * 组合类型类型
+ * 
  * @author zlj
  * @date 2017年10月13日
  * 
@@ -36,20 +37,21 @@ public enum FtdcCombinationType {
 	 * 时间价差组合
 	 */
 	THOST_FTDC_COMBT_CLD("6");
-	
+
 	private String type;
+
 	private FtdcCombinationType(String type) {
 		this.type = type;
 	}
-	
+
 	public String type() {
 		return this.type;
 	}
-	
+
 	public static FtdcCombinationType parseFrom(String type) {
 		FtdcCombinationType retType = null;
 		for (FtdcCombinationType t : FtdcCombinationType.values()) {
-			if(t.type.equals(type)) {
+			if (t.type.equals(type)) {
 				retType = t;
 				break;
 			}

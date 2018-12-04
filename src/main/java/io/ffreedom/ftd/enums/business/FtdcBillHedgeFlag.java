@@ -1,8 +1,8 @@
 package io.ffreedom.ftd.enums.business;
+
 /**
  * 
- * @author ee
- * 2017年10月17日 下午7:35:38
+ * @author ee 2017年10月17日 下午7:35:38
  *
  */
 public enum FtdcBillHedgeFlag {
@@ -18,7 +18,7 @@ public enum FtdcBillHedgeFlag {
 	 * 套保
 	 */
 	FTDC_Hedge("3");
-	
+
 	private String flag;
 
 	private FtdcBillHedgeFlag(String flag) {
@@ -28,22 +28,17 @@ public enum FtdcBillHedgeFlag {
 	public String getFlag() {
 		return flag;
 	}
-	
+
 	public static FtdcBillHedgeFlag parseFrom(String flag) {
-		FtdcBillHedgeFlag retFlag = null;
-		switch(flag) {
+		switch (flag) {
 		case "1":
-			retFlag = FTDC_Speculation;
-			break;
+			return FTDC_Speculation;
 		case "2":
-			retFlag = FTDC_Arbitrage;
-			break;
+			return FTDC_Arbitrage;
 		case "3":
-			retFlag = FtdcBillHedgeFlag.FTDC_Hedge;
-			break;
+			return FTDC_Hedge;
 		default:
-			break;
+			return null;
 		}
-		return retFlag;
 	}
 }

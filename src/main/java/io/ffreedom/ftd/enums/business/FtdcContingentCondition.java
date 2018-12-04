@@ -1,8 +1,8 @@
 package io.ffreedom.ftd.enums.business;
+
 /**
  * 
- * @author lyb
- * 2017年10月17日 下午7:38:23
+ * @author lyb 2017年10月17日 下午7:38:23
  *
  */
 public enum FtdcContingentCondition {
@@ -71,7 +71,7 @@ public enum FtdcContingentCondition {
 	 * 买一价小于等于条件价
 	 */
 	FTDC_BidPriceLesserEqualStopPrice("H");
-	
+
 	private String contingent;
 
 	private FtdcContingentCondition(String contingent) {
@@ -81,61 +81,43 @@ public enum FtdcContingentCondition {
 	public String getContingent() {
 		return contingent;
 	}
-	
+
 	public static FtdcContingentCondition parseFrom(String flag) {
-		FtdcContingentCondition retFlag = null;
-		switch(flag) {
+		switch (flag) {
 		case "1":
-			retFlag = FTDC_Immediately;
-			break;
+			return FTDC_Immediately;
 		case "2":
-			retFlag = FTDC_Touch;
-			break;
+			return FTDC_Touch;
 		case "3":
-			retFlag = FTDC_TouchProfit;
-			break;
+			return FTDC_TouchProfit;
 		case "4":
-			retFlag = FTDC_ParkedOrder;
-			break;
+			return FTDC_ParkedOrder;
 		case "5":
-			retFlag = FTDC_LastPriceGreaterThanStopPrice;
-			break;
+			return FTDC_LastPriceGreaterThanStopPrice;
 		case "6":
-			retFlag = FTDC_LastPriceGreaterEqualStopPrice;
-			break;
+			return FTDC_LastPriceGreaterEqualStopPrice;
 		case "7":
-			retFlag = FTDC_LastPriceLesserThanStopPrice;
-			break;
+			return FTDC_LastPriceLesserThanStopPrice;
 		case "8":
-			retFlag = FTDC_LastPriceLesserEqualStopPrice;
-			break;
+			return FTDC_LastPriceLesserEqualStopPrice;
 		case "9":
-			retFlag = FTDC_AskPriceGreaterThanStopPrice;
-			break;
+			return FTDC_AskPriceGreaterThanStopPrice;
 		case "A":
-			retFlag = FTDC_AskPriceGreaterEqualStopPrice;
-			break;
+			return FTDC_AskPriceGreaterEqualStopPrice;
 		case "B":
-			retFlag = FTDC_AskPriceLesserThanStopPrice;
-			break;
+			return FTDC_AskPriceLesserThanStopPrice;
 		case "C":
-			retFlag = FTDC_AskPriceLesserEqualStopPrice;
-			break;
+			return FTDC_AskPriceLesserEqualStopPrice;
 		case "D":
-			retFlag = FTDC_BidPriceGreaterThanStopPrice;
-			break;
+			return FTDC_BidPriceGreaterThanStopPrice;
 		case "E":
-			retFlag = FTDC_BidPriceGreaterEqualStopPrice;
-			break;
+			return FTDC_BidPriceGreaterEqualStopPrice;
 		case "F":
-			retFlag = FTDC_BidPriceLesserThanStopPrice;
-			break;
+			return FTDC_BidPriceLesserThanStopPrice;
 		case "H":
-			retFlag = FTDC_BidPriceLesserEqualStopPrice;
-			break;
+			return FTDC_BidPriceLesserEqualStopPrice;
 		default:
-			break;
+			return null;
 		}
-		return retFlag;
 	}
 }
